@@ -1,0 +1,24 @@
+.NotifyModal {
+  font-size: 0.9rem;
+}
+
+.NotifyModal header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: hsl(0, 0%, 15%);
+}
+
+.NotifyModal select {
+  min-width: 140px;
+  height: 32px;
+  padding: 0 6px;
+  border-radius: 3px;
+  background: hsl(0deg 0% 94%);
+  cursor: pointer;
+  appearance: none;
+}
+
+.NotifyModal label {
+  display: block;
+  margin-top: 16px;
+}
