@@ -8,7 +8,6 @@
 .Modal {
   position: relative;
   width: 500px;
-  min-height: 250px;
   top: calc(50vh - 125px);
   margin: 0 auto;
   padding: 20px 30px;
