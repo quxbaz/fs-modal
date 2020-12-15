@@ -1,16 +1,16 @@
 import css from './style.css'
 import React from 'react'
-import {createPortal} from 'react-dom'
+import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { useEscapeKey } from 'hooks'
+import useEscapeKey from './useEscapeKey'
 
-const Modal = ({children, className, style, onClose}) => {
+const Modal = ({children, className, onClose}) => {
   useEscapeKey(onClose)
   return createPortal(
     <>
       <div className={css.Backdrop} onClick={onClose} />
-      <div className={classNames(css.Modal, className)} style={style}>
+      <div className={classNames(css.Modal, className)}>
         {children}
       </div>
     </>,
@@ -20,8 +20,7 @@ const Modal = ({children, className, style, onClose}) => {
 
 Modal.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.object,
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default Modal

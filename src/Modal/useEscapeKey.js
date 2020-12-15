@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const useEscapeKey = (fn, deps=[]) => {
+const useEscapeKey = (fn) => {
 
   const handleEscape = (event) => {
     if (event.key === 'Escape')
@@ -10,7 +10,7 @@ const useEscapeKey = (fn, deps=[]) => {
   useEffect(() => {
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
-  }, deps)
+  })
 
 }
 

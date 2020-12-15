@@ -39,6 +39,7 @@ module.exports = (env, argv) => ({
 
   resolve: {
     modules: [
+      abs('src'),  // Enable absolute imports relative to the src/ directory.
       abs('node_modules'),
     ],
   },

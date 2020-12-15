@@ -4,10 +4,117 @@
     <title>fs-modal</title>
   </head>
   <body>
+    <div id="Modals"></div>
     <div id="Main"></div>
-    <p>
-       foo bar
-    </p>
+    <div>
+      <h1>Description</h1>
+      <p>
+        After reading the requirements, I interpreted and structured them below
+        for my own reference.
+      </p>
+      <h2>Create an "available inventory" modal component.</h2>
+      <h3>Requirements</h3>
+      <ul>
+        <li>
+          <p>
+            Validate the email field client-side. Represent the validation state
+            using a green or red border.
+          </p>
+          <aside>
+            <p>
+              I can validate the state using either a regex or a function that
+              parses the field. Either way, the more stringent validation will
+              occur on the server. I can likely find a 99% solution via google.
+            </p>
+          </aside>
+        </li>
+        <li>
+          <p>
+            Respond to submission with either an error or success state.
+          </p>
+          <aside>
+            <p>
+              This is the only requirement that has deeper technical
+              implications, and thus should be given some consideration.
+            </p>
+            <p>
+              The consideration here is how to handle asynchronicity within a
+              component. My initial thought is to use a promise and resolve it
+              when the API call completes. Another approach is to manage the
+              state of the request outside the component.
+            </p>
+            <p>
+              There should be a timeout feature to handle the case where the
+              user loses internet connectivity or simply has too much
+              latency. There may be a standard value backed by research for this
+              number. The duration should account for the fact that internet
+              speeds can vary significantly.
+            </p>
+            <p>
+              UX-wise, the validation message can present itself either during
+              typing or after the user attempts to submit the form.
+            </p>
+            <p>
+              It's usually better to show the error post-submit, as the form
+              will be in some error state when presented with an initially
+              partial email. This is jarring. It gives the wrong impression
+              where the user is progressing normally.
+            </p>
+          </aside>
+        </li>
+        <li>
+          <p>
+            Prevent multiple form submissions.
+          </p>
+          <aside>
+            <p>
+              This will require some state to track an existing submission.
+            </p>
+          </aside>
+        </li>
+        <li>
+          <p>
+            Present a loading indicator during submission.
+          </p>
+          <aside></aside>
+        </li>
+        <li>
+          <p>
+            When the modal is closed, the form is reset.
+          </p>
+          <aside>
+            <p>
+              My initial thought is that this will take care of itself. When a
+              React component is "unmounted," its state is loss. I don't foresee
+              any additional work needed to handle this requirement.
+            </p>
+          </aside>
+        </li>
+        <li>
+          <p>
+            On form submission, output the product variant ID and the email
+            address to the browser console.
+          </p>
+          <aside>
+            <p>
+              I understand this is a placeholder for a real API call. I will
+              model the call as if it were making a real async request. That
+              way, in actual usage, only the implementation would need to be
+              changed.
+            </p>
+          </aside>
+        </li>
+      </ul>
+      <h3>Constraints</h3>
+      <ul>
+        <li>
+          Limit dependencies to core React.
+        </li>
+        <li>
+          No component libraries.
+        </li>
+      </ul>
+    </div>
     <script src="/fs-modal.js"></script>
   </body>
 </html>

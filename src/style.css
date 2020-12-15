@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  /* margin: 0; */
+  /* padding: 0; */
+}
+
+html {
+  font-family: helvetica, arial, sans-serif;
+}
+
+body {
+  background: hsl(42, 100%, 98%);
+}
+
+:global
+#Modals {
+  z-index: 200;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
