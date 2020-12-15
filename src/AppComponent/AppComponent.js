@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
-import Modal from 'Modal'
+import NotifyModal from 'NotifyModal'
 
 const AppComponent = () => {
-  const [isModalActive, setIsModalActive] = useState(false)
+  const [isModalActive, setIsModalActive] = useState(true)
   const handleClick = () => setIsModalActive(!isModalActive)
   return (
     <div>
       <button onClick={handleClick}>
         Don't see size?
       </button>
-      {isModalActive ? (
-        <Modal onClose={() => setIsModalActive(false)}>
-          <div>foobar</div>
-        </Modal>
-      ): null}
+      {isModalActive && (
+        <NotifyModal onClose={() => setIsModalActive(false)} />
+      )}
     </div>
   )
 }
