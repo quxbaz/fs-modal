@@ -1,0 +1,18 @@
+.Backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: hsl(0, 0%, 0%, 0.5);
+}
+
+.Modal {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  top: 160px;
+  padding: 20px 30px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 4px 6px hsla(0, 0%, 40%, 0.5);
+  outline: none;
+}
