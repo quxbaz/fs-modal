@@ -6,151 +6,153 @@
   <body>
     <div id="Modals"></div>
     <div id="Main"></div>
-    <div>
-      <h1>Description</h1>
-      <p>
-        After reading the requirements, I interpreted and structured them below
-        for my own reference.
-      </p>
-      <h2>Create an "available inventory" modal component.</h2>
-      <h2>Requirements</h2>
-      <ul>
-        <li>
-          <p>
-            Validate the email field client-side. Represent the validation state
-            using a green or red border.
-          </p>
-          <aside>
+    <div style="margin: 0 80px 160px; max-width: 720px;">
+      <section>
+        <h1 style="font-size: 2.2rem">Description</h1>
+        <p>
+          After reading the requirements, I interpreted and structured them below
+          for my own reference.
+        </p>
+        <h2>Create an "available inventory" modal component.</h2>
+        <h2>Requirements</h2>
+        <ul>
+          <li>
             <p>
-              I can validate the state using either a regex or a function that
-              parses the field. Either way, the more stringent validation will
-              occur on the server. I can likely find a 99% solution via
-              google/stackoverflow.
+              Validate the email field client-side. Represent the validation state
+              using a green or red border.
             </p>
+            <aside>
+              <p>
+                I can validate the state using either a regex or a function that
+                parses the field. Either way, the more stringent validation will
+                occur on the server. I can likely find a 99% solution via
+                google/stackoverflow.
+              </p>
+              <p>
+                Should an invalid state still allow a submission? I think
+                so. Emails, like dates and timezones, can be trickier than they
+                appear on the surface. Let the backend do the authoritative
+                validation.
+              </p>
+            </aside>
+          </li>
+          <li>
             <p>
-              Should an invalid state still allow a submission? I think
-              so. Emails, like dates and timezones, can be trickier than they
-              appear on the surface. Let the backend do the authoritative
-              validation.
+              Respond to submission with either an error or success state.
             </p>
-          </aside>
-        </li>
-        <li>
-          <p>
-            Respond to submission with either an error or success state.
-          </p>
-          <aside>
+            <aside>
+              <p>
+                This requirement has deeper technical implications, and thus
+                should be given some consideration.
+              </p>
+              <p>
+                The consideration here is how to handle asynchronicity within a
+                component. My initial thought is to use a promise and resolve it
+                when the API call completes. Another approach is to manage the
+                state of the request outside the component.
+              </p>
+              <p>
+                There should be a timeout feature to handle the case where the
+                user loses internet connectivity or simply has too much
+                latency. There may be a standard value backed by research for this
+                number. The duration should account for the fact that internet
+                speeds can vary significantly.
+              </p>
+              <p>
+                UX-wise, the validation message can present itself either during
+                typing or after the user attempts to submit the form.
+              </p>
+              <p>
+                It's usually better to show the error post-submit, as the form
+                will be in some error state when presented with an initially
+                partial email. This is jarring. It gives the wrong impression
+                where the user is progressing normally.
+              </p>
+            </aside>
+          </li>
+          <li>
             <p>
-              This requirement has deeper technical implications, and thus
-              should be given some consideration.
+              Prevent multiple form submissions.
             </p>
+            <aside>
+              <p>
+                This will require some state to track an existing submission.
+              </p>
+            </aside>
+          </li>
+          <li>
             <p>
-              The consideration here is how to handle asynchronicity within a
-              component. My initial thought is to use a promise and resolve it
-              when the API call completes. Another approach is to manage the
-              state of the request outside the component.
+              Present a loading indicator during submission.
             </p>
+            <aside></aside>
+          </li>
+          <li>
             <p>
-              There should be a timeout feature to handle the case where the
-              user loses internet connectivity or simply has too much
-              latency. There may be a standard value backed by research for this
-              number. The duration should account for the fact that internet
-              speeds can vary significantly.
+              When the modal is closed, the form is reset.
             </p>
+            <aside>
+              <p>
+                My initial thought is that this will take care of itself. When a
+                React component is "unmounted," its state is loss. I don't foresee
+                any additional work needed to handle this requirement.
+              </p>
+            </aside>
+          </li>
+          <li>
             <p>
-              UX-wise, the validation message can present itself either during
-              typing or after the user attempts to submit the form.
+              On form submission, output the product variant ID and the email
+              address to the browser console.
             </p>
-            <p>
-              It's usually better to show the error post-submit, as the form
-              will be in some error state when presented with an initially
-              partial email. This is jarring. It gives the wrong impression
-              where the user is progressing normally.
-            </p>
-          </aside>
-        </li>
-        <li>
-          <p>
-            Prevent multiple form submissions.
-          </p>
-          <aside>
-            <p>
-              This will require some state to track an existing submission.
-            </p>
-          </aside>
-        </li>
-        <li>
-          <p>
-            Present a loading indicator during submission.
-          </p>
-          <aside></aside>
-        </li>
-        <li>
-          <p>
-            When the modal is closed, the form is reset.
-          </p>
-          <aside>
-            <p>
-              My initial thought is that this will take care of itself. When a
-              React component is "unmounted," its state is loss. I don't foresee
-              any additional work needed to handle this requirement.
-            </p>
-          </aside>
-        </li>
-        <li>
-          <p>
-            On form submission, output the product variant ID and the email
-            address to the browser console.
-          </p>
-          <aside>
-            <p>
-              I understand this is a placeholder for a real API call. I will
-              model the call as if it were making a real async request. That
-              way, in actual usage, only the implementation would need to be
-              changed.
-            </p>
-          </aside>
-        </li>
-      </ul>
-      <h2>Constraints</h2>
-      <ul>
-        <li>
-          Limit dependencies to core React.
-        </li>
-        <li>
-          No component libraries.
-        </li>
-      </ul>
-    </div>
-    <div style="margin-top: 40px;">
-      <h1>Conclusion</h1>
-      <p>
-        Some things were not fully implemented due to time constraints.
-      </p>
-      <ul>
-        <li>Complete visual states for UX components (hover, focus states).</li>
-        <li>Visual transitions (fading, translating).</li>
-        <li>Responsive, mobile design. The modal should fill the entire page on a narrow screen.</li>
-        <li>Overriding default styles (heavy black border on focused input elements).</li>
-        <li>Did not have time to format this document for presentability.</li>
-        <li>Did not have time to comment code.</li>
-        <li>Did not have time to add a spinner-type loading state indicator.</li>
-        <li>Did not have time to implement timeout functionality on form submit.</li>
-      </ul>
-      <h2>Dependencies used</h2>
-      <ul>
-        <li>
-          <code>react, react-dom</code>
-        </li>
-        <li>
-          <code>classnames</code>
-          <div>Simple function that conditionally applies CSS classes.</div>
-        </li>
-        <li>
-          <code>prop-types</code>
-          <div>Specifies allowable prop types for React components.</div>
-        </li>
-      </ul>
+            <aside>
+              <p>
+                I understand this is a placeholder for a real API call. I will
+                model the call as if it were making a real async request. That
+                way, in actual usage, only the implementation would need to be
+                changed.
+              </p>
+            </aside>
+          </li>
+        </ul>
+        <h2>Constraints</h2>
+        <ul>
+          <li>
+            Limit dependencies to core React.
+          </li>
+          <li>
+            No component libraries.
+          </li>
+        </ul>
+      </section>
+      <section style="margin-top: 40px;">
+        <h1 style="font-size: 2.2rem">Conclusion</h1>
+        <p>
+          Some things were not fully implemented due to time constraints.
+        </p>
+        <ul>
+          <li>Complete visual states for UX components (hover, focus states).</li>
+          <li>Visual transitions (fading, translating).</li>
+          <li>Responsive, mobile design. The modal should fill the entire page on a narrow screen.</li>
+          <li>Overriding default styles (heavy black border on focused input elements).</li>
+          <li>Did not have time to format this document for presentability.</li>
+          <li>Did not have time to comment code.</li>
+          <li>Did not have time to add a spinner-type loading state indicator.</li>
+          <li>Did not have time to implement timeout functionality on form submit.</li>
+        </ul>
+        <h2>Dependencies used</h2>
+        <ul>
+          <li>
+            <code>react, react-dom</code>
+          </li>
+          <li>
+            <code>classnames</code>
+            <div>Simple function that conditionally applies CSS classes.</div>
+          </li>
+          <li>
+            <code>prop-types</code>
+            <div>Specifies allowable prop types for React components.</div>
+          </li>
+        </ul>
+      </section>
     </div>
     <script src="/fs-modal.js"></script>
   </body>
