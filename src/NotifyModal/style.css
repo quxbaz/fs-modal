@@ -30,6 +30,22 @@
   margin-bottom: 9px;
 }
 
+/* .SuccessBadge { */
+/*   display: inline-block; */
+/*   padding: 8px 18px; */
+/*   font-weight: bold; */
+/*   color: #fff; */
+/*   border-radius: 32px; */
+/* } */
+
+.SuccessMessage {
+  margin-bottom: 12px;
+  /* margin: 8px 0 14px; */
+  padding: 12px 18px;
+  background: hsl(127deg 91% 72%);
+  border-radius: 8px;
+}
+
 .NotifyModal select {
   min-width: 140px;
   height: 36px;
@@ -65,6 +81,7 @@
   box-shadow: 0 0 3px 2px rgba(27, 165, 63, .5);
 }
 
+.NotifyModal .isSubmitting input,
 .NotifyModal .isEmpty {
   border: 1px solid hsl(0deg 0% 0%);
   box-shadow: none;

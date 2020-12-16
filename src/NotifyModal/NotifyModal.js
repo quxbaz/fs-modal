@@ -21,11 +21,11 @@ function serverIsEmailValid (email) {
       // Mock the shape of the return API request.
       resolve({
         isEmailValid: isValid,
-
-        // Provide an error message if address was invalid.
-        errorMessage: isValid ? '' : 'Email address is invalid.',
+        message: isValid
+          ? 'You have signed up to be notified when 345757020980 is in stock. You will be notified via email.'
+          : 'Email address is invalid.',
       })
-    }, 2000)
+    }, 0)
   })
 }
 
@@ -80,35 +80,46 @@ const NotifyModal = ({onClose}) => {
         })}>
         <div className={css.CloseButton} onClick={onClose}>✕</div>
         <header>Notify when available</header>
-        <p>
-          Select your size and we'll email you when it's back in stock.
-        </p>
-        <select value={size} onChange={handleSizeChange}>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
-        <label>
-          <div>Email</div>
-          <input
-            autoFocus
-            className={classNames({
-              [css.isValid]: isEmailValid(email),
-              [css.isEmpty]: email.length === 0,
-            })}
-            type="text"
-            value={email}
-            placeholder='john@doe.com'
-            onChange={handleInput} />
-          {result.isEmailValid === false && (
-            <div className={css.ErrorMessage}>{result.errorMessage}</div>
-          )}
-        </label>
-        <footer>
-          <button type='button' className={css.ClearButton} onClick={handleClear}>Clear</button>
-          <button type='submit' className={css.SubmitButton}>
-            {isSubmitting ? 'Submitting...' : 'Notify me'}
-          </button>
-        </footer>
+        {result.isEmailValid === true ? (
+          <>
+            {/* <div className={css.SuccessBadge}>Success!</div> */}
+            <div className={css.SuccessMessage}>
+              {result.message}
+            </div>
+          </>
+        ) : (
+          <>
+            <p>
+              Select your size and we'll email you when it's back in stock.
+            </p>
+            <select value={size} onChange={handleSizeChange}>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+            <label>
+              <div>Email</div>
+              <input
+                autoFocus
+                className={classNames({
+                  [css.isValid]: isEmailValid(email),
+                  [css.isEmpty]: email.length === 0,
+                })}
+                type="text"
+                value={email}
+                placeholder='john@doe.com'
+                onChange={handleInput} />
+              {result.isEmailValid === false && (
+                <div className={css.ErrorMessage}>{result.message}</div>
+              )}
+            </label>
+            <footer>
+              <button type='button' className={css.ClearButton} onClick={handleClear}>Clear</button>
+              <button type='submit' className={css.SubmitButton}>
+                {isSubmitting ? 'Submitting...' : 'Notify me'}
+              </button>
+            </footer>
+          </>
+        )}
       </form>
     </Modal>
   )
