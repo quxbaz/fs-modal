@@ -18,6 +18,7 @@ const NotifyModal = ({onClose}) => {
   return (
     <Modal className={css.NotifyModal} onClose={onClose}>
       <form onSubmit={handleSubmit}>
+        <div className={css.CloseButton} onClick={onClose}>✕</div>
         <header>Notify When Available</header>
         <p>
           Select your size and we'll email you when it's back in stock.
@@ -35,8 +36,8 @@ const NotifyModal = ({onClose}) => {
             onChange={(event) => setEmail(event.target.value)} />
         </label>
         <footer>
-          <button className={css.ClearButton} onClick={handleClear}>Clear</button>
-          <button className={css.SubmitButton} type='submit'>Notify me</button>
+          <button type='button' className={css.ClearButton} onClick={handleClear}>Clear</button>
+          <button type='submit' className={css.SubmitButton}>Notify me</button>
         </footer>
       </form>
     </Modal>

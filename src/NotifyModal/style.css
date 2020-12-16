@@ -1,5 +1,16 @@
 .NotifyModal {
+  position: relative;
   font-size: 0.9rem;
+}
+
+.CloseButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 22px;
+  color: hsl(0deg 0% 60%);
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .NotifyModal header {
@@ -9,10 +20,14 @@
   color: hsl(0, 0%, 15%);
 }
 
+.NotifyModal header + p {
+  margin-bottom: 9px;
+}
+
 .NotifyModal select {
   min-width: 140px;
   height: 32px;
-  padding: 0 6px;
+  padding: 0 10px;
   border-radius: 3px;
   background: hsl(0deg 0% 94%);
   cursor: pointer;
@@ -21,20 +36,21 @@
 
 .NotifyModal label {
   display: block;
-  margin: 16px 0 20px;
+  margin-top: 18px;
 }
 
 .NotifyModal input {
   width: 100%;
   height: 38px;
-  margin-top: 6px;
+  margin-top: 8px;
   padding: 0 10px;
   background: hsl(0deg 0% 94%);
-  border: 1px solid hsl(0deg 0 0);
+  border: 1px solid hsl(0deg 0% 0%);
   border-radius: 3px;
 }
 
 .NotifyModal footer {
+  margin-top: 28px;
   text-align: right;
 }
 
@@ -57,6 +73,7 @@
 }
 
 .NotifyModal .SubmitButton {
+  padding: 0 36px;
   color: #fff;
   background: hsl(224deg 70% 46%);
 }
