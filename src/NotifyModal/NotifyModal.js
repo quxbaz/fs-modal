@@ -12,28 +12,69 @@ function isEmailValid (email) {
   return re.test(String(email).toLowerCase())
 }
 
+// Placeholder function for backend API email validation.
+function serverIsEmailValid (email) {
+  return new Promise((resolve, reject) => {
+    // Insert artificial latency.
+    setTimeout(() => {
+      resolve(isEmailValid(email))
+    }, 2000)
+  })
+}
+
+//
+
 const NotifyModal = ({onClose}) => {
+
+  const [size, setSize] = useState('large')
   const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleClose = () => {
+    if (!isSubmitting) onClose()
+  }
+
   const handleClear = (event) => {
     event.preventDefault()
     setEmail('')
   }
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log('Submit')
-    // ::TODO:: Log to console.
-    // Call API function submit.
+
+  const handleSizeChange = (event) => {
+    if (!isSubmitting)
+      setSize(event.target.value)
   }
+
+  const handleInput = (event) => {
+    if (!isSubmitting)
+      setEmail(event.target.value)
+  }
+
+  const handleSubmit = (event) => {
+    console.log(`FORM\nsize = "${size}"\nemail = "${email}"`)
+    event.preventDefault()
+    if (email.trim().length === 0)
+      return
+    setIsSubmitting(true)
+    serverIsEmailValid(email).then(() => {
+      setIsSubmitting(false)
+    })
+  }
+
   return (
-    <Modal className={css.NotifyModal} onClose={onClose}>
-      <form onSubmit={handleSubmit}>
+    <Modal className={css.NotifyModal} onClose={handleClose}>
+      <form
+        onSubmit={handleSubmit}
+        className={classNames({
+          [css.isSubmitting]: isSubmitting,
+        })}>
         <div className={css.CloseButton} onClick={onClose}>✕</div>
         <header>Notify when available</header>
         <p>
           Select your size and we'll email you when it's back in stock.
         </p>
-        <select>
-          <option>Large</option>
+        <select value={size} onChange={handleSizeChange}>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
         </select>
         <label>
           <div>Email</div>
@@ -46,7 +87,7 @@ const NotifyModal = ({onClose}) => {
             type="text"
             value={email}
             placeholder='john@doe.com'
-            onChange={(event) => setEmail(event.target.value)} />
+            onChange={handleInput} />
         </label>
         <footer>
           <button type='button' className={css.ClearButton} onClick={handleClear}>Clear</button>
