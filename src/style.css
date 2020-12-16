@@ -9,10 +9,6 @@ html {
   font-size: 15px;
 }
 
-body {
-  background: hsl(42, 100%, 98%);
-}
-
 :global
 #Modals {
   z-index: 200;
