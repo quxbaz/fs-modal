@@ -8,7 +8,7 @@ const buttonStyle = {
 }
 
 const AppComponent = () => {
-  const [isModalActive, setIsModalActive] = useState(true)
+  const [isModalActive, setIsModalActive] = useState(false)
   const handleClick = () => setIsModalActive(!isModalActive)
   return (
     <div>
