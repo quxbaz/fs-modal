@@ -25,7 +25,7 @@ function serverIsEmailValid (email) {
           ? 'You have signed up to be notified when 345757020980 is in stock. You will be notified via email.'
           : 'Email address is invalid.',
       })
-    }, 0)
+    }, 2000)
   })
 }
 
