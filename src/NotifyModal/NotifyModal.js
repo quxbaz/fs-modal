@@ -1,7 +1,16 @@
 import css from './style.css'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import Modal from 'Modal'
+
+/*
+  Source: https://stackoverflow.com/a/46181/14557705
+*/
+function isEmailValid (email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(String(email).toLowerCase())
+}
 
 const NotifyModal = ({onClose}) => {
   const [email, setEmail] = useState('')
@@ -30,6 +39,10 @@ const NotifyModal = ({onClose}) => {
           <div>Email</div>
           <input
             autoFocus
+            className={classNames({
+              [css.isValid]: isEmailValid(email),
+              [css.isEmpty]: email.length === 0,
+            })}
             type="text"
             value={email}
             placeholder='john@doe.com'
