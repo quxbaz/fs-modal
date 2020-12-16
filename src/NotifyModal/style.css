@@ -5,8 +5,8 @@
 
 .CloseButton {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  right: 10px;
   font-size: 22px;
   color: hsl(0deg 0% 60%);
   opacity: 0.5;
@@ -14,7 +14,7 @@
 }
 
 .NotifyModal header {
-  margin: 10px 0 26px;
+  margin: 12px 0 26px;
   font-size: 1.5rem;
   font-weight: bold;
   color: hsl(0, 0%, 15%);
@@ -50,7 +50,7 @@
 }
 
 .NotifyModal footer {
-  margin-top: 28px;
+  margin-top: 27px;
   text-align: right;
 }
 
