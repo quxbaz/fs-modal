@@ -1,14 +1,15 @@
 .Backdrop {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  width: 100vw;
+  height: 100vh;
   background: hsl(0deg 0% 0% / 70%);
 }
 
 .Modal {
   position: relative;
   width: 500px;
-  top: calc(50vh - 125px);
+  top: calc(50vh - 200px);
   margin: 0 auto;
   padding: 20px 30px;
   background: #fff;

@@ -5,9 +5,19 @@ import Modal from 'Modal'
 
 const NotifyModal = ({onClose}) => {
   const [email, setEmail] = useState('')
+  const handleClear = (event) => {
+    event.preventDefault()
+    setEmail('')
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log('Submit')
+    // ::TODO:: Log to console.
+    // Call API function submit.
+  }
   return (
     <Modal className={css.NotifyModal} onClose={onClose}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <header>Notify When Available</header>
         <p>
           Select your size and we'll email you when it's back in stock.
@@ -16,13 +26,18 @@ const NotifyModal = ({onClose}) => {
           <option>Large</option>
         </select>
         <label>
-          Email
+          <div>Email</div>
           <input
+            autoFocus
             type="text"
             value={email}
             placeholder='john@doe.com'
             onChange={(event) => setEmail(event.target.value)} />
         </label>
+        <footer>
+          <button className={css.ClearButton} onClick={handleClear}>Clear</button>
+          <button className={css.SubmitButton} type='submit'>Notify me</button>
+        </footer>
       </form>
     </Modal>
   )
