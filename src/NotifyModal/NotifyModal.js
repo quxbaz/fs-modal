@@ -15,9 +15,16 @@ function isEmailValid (email) {
 // Placeholder function for backend API email validation.
 function serverIsEmailValid (email) {
   return new Promise((resolve, reject) => {
+    const isValid = isEmailValid(email)
     // Insert artificial latency.
     setTimeout(() => {
-      resolve(isEmailValid(email))
+      // Mock the shape of the return API request.
+      resolve({
+        isEmailValid: isValid,
+
+        // Provide an error message if address was invalid.
+        errorMessage: isValid ? '' : 'Email address is invalid.',
+      })
     }, 2000)
   })
 }
@@ -29,6 +36,8 @@ const NotifyModal = ({onClose}) => {
   const [size, setSize] = useState('large')
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  // The result of an API validation request.
+  const [result, setResult] = useState({})
 
   const handleClose = () => {
     if (!isSubmitting) onClose()
@@ -52,10 +61,12 @@ const NotifyModal = ({onClose}) => {
   const handleSubmit = (event) => {
     console.log(`FORM\nsize = "${size}"\nemail = "${email}"`)
     event.preventDefault()
+    setResult({})
     if (email.trim().length === 0)
       return
     setIsSubmitting(true)
-    serverIsEmailValid(email).then(() => {
+    serverIsEmailValid(email).then((result) => {
+      setResult(result)
       setIsSubmitting(false)
     })
   }
@@ -88,6 +99,9 @@ const NotifyModal = ({onClose}) => {
             value={email}
             placeholder='john@doe.com'
             onChange={handleInput} />
+          {result.isEmailValid === false && (
+            <div className={css.ErrorMessage}>{result.errorMessage}</div>
+          )}
         </label>
         <footer>
           <button type='button' className={css.ClearButton} onClick={handleClear}>Clear</button>

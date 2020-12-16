@@ -70,6 +70,12 @@
   box-shadow: none;
 }
 
+.ErrorMessage {
+  margin-top: 12px;
+  font-weight: bold;
+  color: hsl(0deg 70% 55%);
+}
+
 .NotifyModal footer {
   margin-top: 27px;
   text-align: right;
