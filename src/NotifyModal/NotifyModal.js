@@ -19,7 +19,7 @@ const NotifyModal = ({onClose}) => {
     <Modal className={css.NotifyModal} onClose={onClose}>
       <form onSubmit={handleSubmit}>
         <div className={css.CloseButton} onClick={onClose}>✕</div>
-        <header>Notify When Available</header>
+        <header>Notify when available</header>
         <p>
           Select your size and we'll email you when it's back in stock.
         </p>
