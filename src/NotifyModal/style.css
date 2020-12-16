@@ -4,7 +4,7 @@
 }
 
 .isSubmitting {
-  opacity: 0.3;
+  opacity: 0.4;
   pointer-events: none;
   cursor: default;
 }
@@ -97,4 +97,8 @@
   padding: 0 36px;
   color: #fff;
   background: hsl(224deg 70% 46%);
+}
+
+.isSubmitting .SubmitButton {
+  font-style: italic;
 }
