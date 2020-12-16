@@ -91,7 +91,9 @@ const NotifyModal = ({onClose}) => {
         </label>
         <footer>
           <button type='button' className={css.ClearButton} onClick={handleClear}>Clear</button>
-          <button type='submit' className={css.SubmitButton}>Notify me</button>
+          <button type='submit' className={css.SubmitButton}>
+            {isSubmitting ? 'Submitting...' : 'Notify me'}
+          </button>
         </footer>
       </form>
     </Modal>
